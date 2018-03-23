@@ -16,7 +16,7 @@ public interface ArticleService {
     List<Article> findAll();
 
     //更新新闻信息的方法
-    void updateArticle(Article article);
+    void updateArticle(Integer id);
 
     //删除新闻信息的方法
     void deleteArticle(Integer id);

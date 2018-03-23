@@ -19,7 +19,7 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Autowired
     private ArticleMapper articleMapper;
-
+    private Article article;
 
     @Override
     public List<Article> findAll() {
@@ -29,25 +29,30 @@ public class ArticleServiceImpl implements ArticleService{
         return list;
     }
 
+
+
     //更新新闻信息
     @Override
-    public void updateArticle(Article article) {
+    public void updateArticle(Integer id) {
 
-
-        return ;
+        System.out.println("能提交吗");
+        articleMapper.updateByPrimaryKeySelective(article);
     }
 
 
     //根据id来进行删除
     @Override
     public void deleteArticle(Integer id) {
-        return;
+
+        articleMapper.deleteByPrimaryKey(id);
     }
 
 
     //添加
     @Override
     public void insertArticle(Article article) {
-        return;
+
+
+        articleMapper.insertSelective(article);
     }
 }
