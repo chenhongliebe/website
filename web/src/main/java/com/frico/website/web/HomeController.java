@@ -28,6 +28,7 @@ public class HomeController {
     public
     Result demo(){
         System.out.println("hello world");
+        System.out.print("1111");
         return Result.success();
     }
 
