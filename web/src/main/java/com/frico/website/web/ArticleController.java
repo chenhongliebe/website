@@ -33,6 +33,7 @@ public class ArticleController {
 
         List<Article> list = articleService.findAll();
         System.out.println("2111111");
+
         return Result.success(list);
 
     }
