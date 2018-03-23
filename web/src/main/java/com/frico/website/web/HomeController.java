@@ -29,6 +29,7 @@ public class HomeController {
     Result demo(){
         System.out.println("hello world");
         System.out.print("1111");
+        System.out.print("2222");
         return Result.success();
     }
 
