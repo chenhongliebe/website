@@ -32,9 +32,31 @@ public class ArticleController {
     public Result getArticle() {
 
         List<Article> list = articleService.findAll();
-        System.out.println("2111111");
+
 
         return Result.success(list);
+
+    }
+
+    /**
+     * 根据主键id删除文章
+     * @return
+     */
+    public Result delectArticle(Integer id) {
+
+        articleService.deleteArticle(id);
+        return Result.success();
+    }
+
+    /**
+     * 根据文章id来更改文章内容
+     *
+     */
+    public Result updateArticle(Integer id) {
+
+        articleService.updateArticle(id);
+
+        return Result.success();
 
     }
 

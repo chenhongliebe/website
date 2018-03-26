@@ -35,7 +35,7 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public void updateArticle(Integer id) {
 
-        System.out.println("能提交吗");
+
         articleMapper.updateByPrimaryKeySelective(article);
     }
 
