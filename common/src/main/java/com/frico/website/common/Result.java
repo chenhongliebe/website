@@ -23,6 +23,12 @@ public class Result<T> implements Serializable {
         this.msg=resultEnum.getMsg();
     }
 
+    public Result(String code,String msg){
+        this.code=code;
+        this.msg = msg;
+    }
+
+
     public Result(T data){
         this.code=ResultEnum.SUCCESS.getCode();
         this.msg=ResultEnum.SUCCESS.getMsg();
@@ -31,6 +37,11 @@ public class Result<T> implements Serializable {
 
     public static<T> Result<T> success(T data){
         return new Result(data);
+    }
+
+    public static<T> Result<T> success(String code,String msg){
+
+        return new Result(code,msg);
     }
 
     public static<T> Result<T> success(){
@@ -42,6 +53,10 @@ public class Result<T> implements Serializable {
 
     public static<T> Result<T> ret(ResultEnum resultEnum){
         return new Result(resultEnum);
+    }
+
+    public static<T> Result<T> ret(String code,String msg){
+        return new Result(code,msg);
     }
 
     public String getCode() {

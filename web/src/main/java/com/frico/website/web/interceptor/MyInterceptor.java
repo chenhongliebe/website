@@ -1,7 +1,6 @@
 package com.frico.website.web.interceptor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,19 +16,28 @@ import java.net.InetAddress;
  * Time: 15:20
  * Java gives me life and I have to work hard.
  */
+@Slf4j
 public
 class MyInterceptor implements HandlerInterceptor{
 
-    public static final
-    Logger log = LoggerFactory.getLogger("MyInterceptor");
+    protected void setHeader(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Methods", request.getHeader("Access-Control-Request-Method"));
+        response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+    }
 
     @Override
     public
     boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String path = request.getRequestURI();
-        log.info(path);
-        System.out.println(path);
-        InetAddress i =null;
+        setHeader(request, response);
+        StringBuffer path = request.getRequestURL();
+        log.info("请求地址：{}",path);
+        if (path.indexOf("/login") != -1){
+            log.info("login:"+request.getSession().getId());
+            return true;
+        }
+
         return true;
     }
 

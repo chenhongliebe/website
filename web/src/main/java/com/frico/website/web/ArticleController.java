@@ -45,7 +45,7 @@ public class ArticleController {
     public Result delectArticle(Integer id) {
 
         articleService.deleteArticle(id);
-        return Result.success();
+        return Result.success("1","删除成功");
     }
 
     /**

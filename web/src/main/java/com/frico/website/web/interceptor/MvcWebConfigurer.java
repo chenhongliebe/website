@@ -21,7 +21,6 @@ class MvcWebConfigurer extends WebMvcConfigurerAdapter {
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
-        System.out.println("添加配置");
         super.addInterceptors(registry);
     }
 }
