@@ -4,7 +4,6 @@ import com.frico.website.common.Enum.DeleteEnum;
 import com.frico.website.common.Result;
 import com.frico.website.model.articleManagement.Article;
 import com.frico.website.service.articleManagement.ArticleService;
-import com.frico.website.service.articleManagement.serviceImpl.ArticleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,8 +42,10 @@ public class ArticleController {
      * @return
      */
     @RequestMapping("get")
-    public Result get(@RequestBody Integer id) {
-        Article article = articleService.get(id);
+    public Result get(@RequestBody Article article) {
+        if(article !=null){
+            article = articleService.get(article.getId());
+        }
         return Result.success(article);
     }
 

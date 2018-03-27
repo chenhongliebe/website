@@ -12,12 +12,8 @@ import java.util.List;
 public interface ArticleService {
 
     public void insert(Article article);
-    //逻辑删除
+
     public void delete(Integer[] ids);
-    //永久删除
-    public void permanentDelete(Integer[] ids);
-    //还原回收站
-    public void restore(Integer[] ids);
 
     public void update(Article article);
 
