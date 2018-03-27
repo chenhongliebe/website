@@ -36,23 +36,23 @@
         </javaTypeResolver>
 
         <!-- 配置model生成位置 -->
-        <javaModelGenerator targetPackage="com.frico.website.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.frico.website.model.articleManagement" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 配置sqlmap生成位置 -->
-        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mybatis.mapper.articleManagement" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 配置mapper接口生成位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.frico.website.dao"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.frico.website.dao.articleManagement"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="test" domainObjectName="Test"
+        <table tableName="classify" domainObjectName="Classify"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" type="post" identity="true"/>

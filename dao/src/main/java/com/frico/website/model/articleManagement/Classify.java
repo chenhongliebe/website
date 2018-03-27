@@ -1,29 +1,42 @@
-package com.frico.website.model;
+/**
+ * 
+ * **
+ * 
+ * Classify.java
+ * 
+ */
+package com.frico.website.model.articleManagement;
 
 import java.util.Date;
 
-public class Article {
+/**
+ * <p>
+ * 表 : classify的 Model 类
+ * 
+ * @author 	chh
+ * @date 	2018年03月26日
+ */
+public class Classify {
+    /** 字段:id，主键 */
     private Integer id;
 
-    private String title;
-
-    private String status;
-
+    /** 字段:type，类别 */
     private String type;
 
+    /** 字段:create_id，创建者 */
     private Integer createId;
 
-    private Integer updateId;
-
+    /** 字段:create_date，创建时间 */
     private Date createDate;
 
+    /** 字段:update_id，更新者 */
+    private Integer updateId;
+
+    /** 字段:update_date，更新时间 */
     private Date updateDate;
 
+    /** 字段:is_delete，是否删除 */
     private String isDelete;
-
-    private String author;
-
-    private String content;
 
     public Integer getId() {
         return id;
@@ -31,22 +44,6 @@ public class Article {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
     }
 
     public String getType() {
@@ -65,20 +62,20 @@ public class Article {
         this.createId = createId;
     }
 
-    public Integer getUpdateId() {
-        return updateId;
-    }
-
-    public void setUpdateId(Integer updateId) {
-        this.updateId = updateId;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Integer getUpdateId() {
+        return updateId;
+    }
+
+    public void setUpdateId(Integer updateId) {
+        this.updateId = updateId;
     }
 
     public Date getUpdateDate() {
@@ -95,21 +92,5 @@ public class Article {
 
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete == null ? null : isDelete.trim();
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author == null ? null : author.trim();
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }

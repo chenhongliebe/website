@@ -1,12 +1,21 @@
-package com.frico.website.dao;
+/**
+ * 
+ * **
+ * 
+ * ArticleMapper.java
+ * 
+ */
+package com.frico.website.dao.articleManagement;
 
-import com.frico.website.model.Article;
+import com.frico.website.model.articleManagement.Article;
 
-
-import javax.annotation.Resource;
-import java.util.List;
-
-@Resource
+/**
+ * <p>
+ * 表 : article的 Mapper 类
+ * 
+ * @author 	chh
+ * @date 	2018年03月26日
+ */
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -21,6 +30,4 @@ public interface ArticleMapper {
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
-
-    List findAll();
 }
