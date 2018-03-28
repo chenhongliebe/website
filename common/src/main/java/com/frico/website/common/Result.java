@@ -1,5 +1,7 @@
 package com.frico.website.common;
 
+import com.github.pagehelper.PageInfo;
+
 import java.io.Serializable;
 
 /**
@@ -36,6 +38,10 @@ public class Result<T> implements Serializable {
     }
 
     public static<T> Result<T> success(T data){
+        return new Result(data);
+    }
+
+    public static<T> Result<T> success(T data,PageInfo p){
         return new Result(data);
     }
 

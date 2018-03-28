@@ -14,7 +14,7 @@ import com.frico.website.model.articleManagement.Comment;
  * 表 : comment的 Mapper 类
  * 
  * @author 	chh
- * @date 	2018年03月26日
+ * @date 	2018年03月28日
  */
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer id);

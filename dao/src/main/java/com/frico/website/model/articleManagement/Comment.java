@@ -7,42 +7,42 @@
  */
 package com.frico.website.model.articleManagement;
 
+import com.frico.website.common.model.DataEntity;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
  * 表 : comment的 Model 类
  * 
  * @author 	chh
- * @date 	2018年03月26日
+ * @date 	2018年03月28日
  */
-public class Comment {
-    /** 字段:id，评论的主键id */
+public class Comment extends DataEntity{
+    /** 字段:id，主键 */
     private Integer id;
 
-    /** 字段:content，评论的内容 */
+    /** 字段:content，类型 */
     private String content;
 
-    /** 字段:article_id，评论对应的文章id */
+    /** 字段:article_id，评论的文章 */
     private Integer articleId;
 
-    /** 字段:create_id，评论人对应的id */
+    /** 字段:create_id，创建者 */
     private Integer createId;
 
-    /** 字段:update_id，更新评论人对应的id */
-    private Integer updateId;
-
-    /** 字段:create_date，发表评论的时间 */
+    /** 字段:create_date，创建时间 */
     private Date createDate;
 
-    /** 字段:update_date，更新评论的时间 */
-    private Date updateDate;
-
-    /** 字段:is_delete，是否删除评论  1  是  2 否 */
+    /** 字段:is_delete，是否删除 */
     private String isDelete;
 
-    /** 字段:comment_id，评论的id */
-    private Integer commentId;
+    /** 字段:zan_count，赞数 */
+    private Integer zanCount;
+
+    private List<Reply> replyList =new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -76,28 +76,12 @@ public class Comment {
         this.createId = createId;
     }
 
-    public Integer getUpdateId() {
-        return updateId;
-    }
-
-    public void setUpdateId(Integer updateId) {
-        this.updateId = updateId;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
     }
 
     public String getIsDelete() {
@@ -108,11 +92,19 @@ public class Comment {
         this.isDelete = isDelete == null ? null : isDelete.trim();
     }
 
-    public Integer getCommentId() {
-        return commentId;
+    public Integer getZanCount() {
+        return zanCount;
     }
 
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
+    public void setZanCount(Integer zanCount) {
+        this.zanCount = zanCount;
+    }
+
+    public List<Reply> getReplyList() {
+        return replyList;
+    }
+
+    public void setReplyList(List<Reply> replyList) {
+        this.replyList = replyList;
     }
 }

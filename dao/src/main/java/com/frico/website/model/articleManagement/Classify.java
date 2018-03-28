@@ -7,6 +7,8 @@
  */
 package com.frico.website.model.articleManagement;
 
+import com.frico.website.common.model.DataEntity;
+
 import java.util.Date;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Date;
  * @author 	chh
  * @date 	2018年03月26日
  */
-public class Classify {
+public class Classify extends DataEntity{
     /** 字段:id，主键 */
     private Integer id;
 

@@ -52,7 +52,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="classify" domainObjectName="Classify"
+        <table tableName="reply" domainObjectName="Reply"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" type="post" identity="true"/>

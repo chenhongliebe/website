@@ -4,6 +4,8 @@ import com.frico.website.common.Enum.DeleteEnum;
 import com.frico.website.common.Result;
 import com.frico.website.model.articleManagement.Article;
 import com.frico.website.service.articleManagement.ArticleService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,6 @@ import java.util.List;
  * Time: 14:12
  * Java gives me life and I have to work hard.
  */
-
 @RestController
 @RequestMapping("bc/article")
 public class ArticleController {
@@ -56,8 +57,10 @@ public class ArticleController {
      */
     @RequestMapping("findList")
     public Result<List<Article>> findList(@RequestBody Article article){
+        PageHelper.startPage(article.getPageNum(),article.getPageSize());
         List<Article> list = articleService.findList(article);
-        return Result.success(list);
+        PageInfo<Article> pageInfo = new PageInfo(list);
+        return Result.success(list,pageInfo);
     }
 
     /**
@@ -67,7 +70,7 @@ public class ArticleController {
      */
     @RequestMapping("delete")
     public Result delete(@RequestBody Integer[] ids){
-        if(ids !=null && ids.length >1){
+        if(ids !=null && ids.length >0){
             for(Integer id :ids){
                 Article article = new Article();
                 article.setId(id);
@@ -86,7 +89,7 @@ public class ArticleController {
      */
     @RequestMapping("restore")
     public Result restore(@RequestBody Integer[] ids){
-        if(ids !=null && ids.length >1){
+        if(ids !=null && ids.length >0){
             for(Integer id :ids){
                 Article article = new Article();
                 article.setId(id);

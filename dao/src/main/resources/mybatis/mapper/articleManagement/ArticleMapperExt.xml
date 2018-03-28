@@ -10,16 +10,16 @@
     from article
     WHERE 1=1
     <if test="type !=null and type !=''">
-      and type =#{type},
+      and type =#{type}
     </if>
-    <if test="status !=null status !=''">
-      and status =#{status},
+    <if test="status !=null and status !=''">
+      and status =#{status}
     </if>
     <if test="updateDate !=null">
-      and date_format(update_date,'%Y%m')=date_format(#{updateDate},'%Y%m') ,
+      and date_format(update_date,'%Y%m')=date_format(#{updateDate},'%Y%m')
     </if>
     <if test="isDelete !=null and isDelete !=''">
-      and is_delete =#{isDelete},
+      and is_delete =#{isDelete}
     </if>
     order BY update_date DESC
   </select>
