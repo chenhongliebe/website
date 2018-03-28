@@ -32,7 +32,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void delete(Integer[] ids) {
-        if(ids !=null && ids.length >1){
+        if(ids !=null && ids.length >0){
             for(Integer id :ids){
                 articleMapperExt.deleteByPrimaryKey(id);
             }

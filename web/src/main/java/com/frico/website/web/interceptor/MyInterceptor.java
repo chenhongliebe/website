@@ -1,7 +1,5 @@
 package com.frico.website.web.interceptor;
 
-import com.frico.website.common.UserUtil;
-import com.frico.website.common.model.LoginInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -40,9 +38,7 @@ class MyInterceptor implements HandlerInterceptor{
             return true;
         }
 
-        LoginInfo loginInfo = new LoginInfo();
-        loginInfo.setId(1);
-        UserUtil.setLoginInfo(loginInfo);
+
 
         return true;
     }

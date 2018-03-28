@@ -7,7 +7,10 @@
  */
 package com.frico.website.dao.articleManagement;
 
+import com.frico.website.model.articleManagement.Comment;
+
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -18,4 +21,7 @@ import javax.annotation.Resource;
  */
 @Resource
 public interface CommentMapperExt extends CommentMapper {
+
+    public List<Comment> findList(Comment comment);
+
 }
