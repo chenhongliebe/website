@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 文章的控制层
- * User: Administrator
+ * User: xrb
  * Date: 2018/3/22
  * Time: 14:12
  * Java gives me life and I have to work hard.
@@ -103,7 +103,7 @@ public class ArticleController {
      * @param ids
      * @return
      */
-    @RequestMapping("permanentdelete")
+    @RequestMapping("permanentDelete")
     public Result permanentDelete(@RequestBody Integer[] ids){
         articleService.delete(ids);
         return Result.success();

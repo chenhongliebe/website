@@ -56,6 +56,7 @@ public class Result<T> implements Serializable {
     }
 
     public static<T> Result<T> ret(String code,String msg){
+
         return new Result(code,msg);
     }
 
