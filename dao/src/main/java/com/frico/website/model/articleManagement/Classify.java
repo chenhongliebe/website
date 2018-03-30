@@ -18,7 +18,11 @@ import java.util.Date;
  * @author 	chh
  * @date 	2018年03月26日
  */
-public class Classify extends DataEntity{
+public class Classify extends DataEntity<Classify> {
+
+
+    private static final long serialVersionUID = 6243909325871848150L;
+
     /** 字段:id，主键 */
     private Integer id;
 

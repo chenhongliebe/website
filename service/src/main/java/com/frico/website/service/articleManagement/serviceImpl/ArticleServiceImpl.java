@@ -27,6 +27,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private ArticleMapperExt articleMapperExt;
 
+
+    //发布文章
     @Override
     public void insert(Article article){
         LoginInfo loginInfo = UserUtil.getLoginInfo();
@@ -66,6 +68,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article get(Integer id) {
+
         return articleMapperExt.selectByPrimaryKey(id);
     }
 

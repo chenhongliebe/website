@@ -7,7 +7,10 @@
  */
 package com.frico.website.dao.articleManagement;
 
+import com.frico.website.model.articleManagement.Classify;
+
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -18,4 +21,6 @@ import javax.annotation.Resource;
  */
 @Resource
 public interface ClassifyMapperExt extends ClassifyMapper {
+
+    public List<Classify> findAll(Classify classify);
 }
