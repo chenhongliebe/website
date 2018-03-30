@@ -20,7 +20,8 @@ class MvcWebConfigurer extends WebMvcConfigurerAdapter {
         // 多个拦截器组成一个拦截器链
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/bc/**").addPathPatterns("/front/comment").
+                excludePathPatterns("/bc/login");
         super.addInterceptors(registry);
     }
 }

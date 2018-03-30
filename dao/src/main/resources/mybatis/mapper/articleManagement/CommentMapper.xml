@@ -10,11 +10,11 @@
     <result column="is_delete" jdbcType="CHAR" property="isDelete" />
     <result column="zan_count" jdbcType="INTEGER" property="zanCount" />
     <collection property="replyList" ofType="com.frico.website.model.articleManagement.Reply">
-      <id property="id" column="id"/>
-      <result property="replyMsg" column="reply_msg"/>
-      <result property="createDate" column="create_date"/>
-      <result property="createId" column="create_id"/>
-      <result property="toCreateId" column="to_create_id"/>
+      <id property="id" jdbcType="INTEGER" column="reply.id"/>
+      <result property="replyMsg" jdbcType="VARCHAR" column="reply.replyMsg"/>
+      <result property="createDate" jdbcType="TIMESTAMP" column="reply.createDate"/>
+      <result property="createId" jdbcType="INTEGER" column="reply.createId"/>
+      <result property="toCreateId" jdbcType="INTEGER" column="reply.toCreateId"/>
     </collection>
   </resultMap>
   <sql id="Base_Column_List">

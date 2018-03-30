@@ -7,4 +7,6 @@ import java.util.List;
 public interface CommentService {
 
     public List<Comment> findList(Comment comment);
+
+    public void save(Comment comment);
 }

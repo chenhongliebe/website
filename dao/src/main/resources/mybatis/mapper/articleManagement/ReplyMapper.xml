@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frico.website.dao.articleManagement.ReplyMapperExt">
+  <resultMap id="BaseResultMap" type="com.frico.website.model.articleManagement.Reply">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+    <result column="to_create_id" jdbcType="INTEGER" property="toCreateId" />
+    <result column="reply_msg" jdbcType="VARCHAR" property="replyMsg" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, comment_id, create_id, to_create_id, reply_msg, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from reply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from reply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.frico.website.model.articleManagement.Reply">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into reply (comment_id, create_id, to_create_id, 
+      reply_msg, create_date)
+    values (#{commentId,jdbcType=INTEGER}, #{createId,jdbcType=INTEGER}, #{toCreateId,jdbcType=INTEGER}, 
+      #{replyMsg,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.frico.website.model.articleManagement.Reply">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into reply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="toCreateId != null">
+        to_create_id,
+      </if>
+      <if test="replyMsg != null">
+        reply_msg,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="toCreateId != null">
+        #{toCreateId,jdbcType=INTEGER},
+      </if>
+      <if test="replyMsg != null">
+        #{replyMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.frico.website.model.articleManagement.Reply">
+    update reply
+    <set>
+      <if test="commentId != null">
+        comment_id = #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="toCreateId != null">
+        to_create_id = #{toCreateId,jdbcType=INTEGER},
+      </if>
+      <if test="replyMsg != null">
+        reply_msg = #{replyMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.frico.website.model.articleManagement.Reply">
+    update reply
+    set comment_id = #{commentId,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=INTEGER},
+      to_create_id = #{toCreateId,jdbcType=INTEGER},
+      reply_msg = #{replyMsg,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

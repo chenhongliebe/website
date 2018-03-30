@@ -1,13 +1,17 @@
 package com.frico.website.service.articleManagement.serviceImpl;
 
 
+import com.frico.website.common.UserUtil;
 import com.frico.website.common.exception.MyException;
+import com.frico.website.common.model.LoginInfo;
 import com.frico.website.dao.articleManagement.ArticleMapperExt;
 import com.frico.website.model.articleManagement.Article;
 import com.frico.website.service.articleManagement.ArticleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +20,7 @@ import java.util.List;
  * Time: 16:14
  * Java gives me life and I have to work hard.
  */
+@Slf4j
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
@@ -24,8 +29,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void insert(Article article){
-        article.preInsert();
-        articleMapperExt.insertSelective(article);
+        LoginInfo loginInfo = UserUtil.getLoginInfo();
+        if(loginInfo!=null && loginInfo.getId() !=null){
+            article.setCreateDate(new Date());
+            article.setUpdateDate(article.getCreateDate());
+            article.setCreateId(loginInfo.getId());
+            article.setUpdateId(article.getCreateId());
+            articleMapperExt.insertSelective(article);
+        }else {
+            log.error("插入文章时，用户id不能为空！");
+            throw new MyException("请先登录！");
+        }
     }
 
     @Override

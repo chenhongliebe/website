@@ -42,6 +42,8 @@ public class Comment extends DataEntity{
     /** 字段:zan_count，赞数 */
     private Integer zanCount;
 
+    private Integer toCreateId;
+
     private List<Reply> replyList =new ArrayList<>();
 
     public Integer getId() {
@@ -106,5 +108,13 @@ public class Comment extends DataEntity{
 
     public void setReplyList(List<Reply> replyList) {
         this.replyList = replyList;
+    }
+
+    public Integer getToCreateId() {
+        return toCreateId;
+    }
+
+    public void setToCreateId(Integer toCreateId) {
+        this.toCreateId = toCreateId;
     }
 }
