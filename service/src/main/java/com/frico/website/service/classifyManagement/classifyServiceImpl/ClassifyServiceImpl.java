@@ -26,12 +26,10 @@ public class ClassifyServiceImpl implements ClassifyService{
 
     /**
      * 添加分类
-     * 在添加分类之前需要手动调用DataEntity里面方法
      * @param classify
      */
     @Override
     public void insert(Classify classify) {
-        classify.preInsert();
         classifyMapperExt.insertSelective(classify);
     }
 

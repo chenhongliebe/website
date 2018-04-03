@@ -13,7 +13,7 @@ import com.frico.website.model.articleManagement.Classify;
  * <p>
  * 表 : classify的 Mapper 类
  * 
- * @author 	chh
+ * @author 	xrb
  * @date 	2018年03月26日
  */
 public interface ClassifyMapper {

@@ -50,6 +50,7 @@ public class Reply extends DataEntity{
     }
 
     public void setCommentId(Integer commentId) {
+
         this.commentId = commentId;
     }
 

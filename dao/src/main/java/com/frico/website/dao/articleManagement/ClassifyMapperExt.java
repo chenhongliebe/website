@@ -15,8 +15,7 @@ import java.util.List;
 /**
  * <p>
  * ClassifyMapper的扩展 Mapper 接口
- * 
- * @author 	chh
+ * @author  xrb
  * @date 	2018年03月26日
  */
 @Resource
