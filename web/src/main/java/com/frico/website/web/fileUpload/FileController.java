@@ -62,7 +62,7 @@ public class FileController {
             InputStream inStream = new ByteArrayInputStream(m.getBytes());
             Long length = (long) m.getBytes().length;
             File file = new File(path);
-            if(file.exists()){
+            if(!file.exists()){
                 file.mkdirs();
             }
             path += urls;
