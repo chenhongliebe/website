@@ -1,5 +1,6 @@
 package com.frico.website.web.adminManagement;
 
+import com.frico.website.common.Result;
 import com.frico.website.dao.system.UroleMapperExt;
 import com.frico.website.model.system.Uuser;
 import org.apache.shiro.SecurityUtils;
@@ -70,6 +71,7 @@ public class AdminController {
                 currentUser.login(token);
                 //验证是否登录成功
                 if(currentUser.isAuthenticated()) {
+
                     logger.info("对用户[" + uuser.getMoblie() + "]登录认证通过" ); //这里后面根据需求可以加认证通过后的一些系统参数的初始化操作
                     System.out.println("对用户[" + uuser.getMoblie() + "]登录认证通过");
                     return "redirect:/";
@@ -103,7 +105,7 @@ public class AdminController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/ajaxlogin", method = RequestMethod.POST)
     public Map<String, Object> submitLogin(@RequestBody String username, String password, Model model) {
 
         Map<String, Object> resultMap = new LinkedHashMap <>();

@@ -7,6 +7,7 @@
  */
 package com.frico.website.model.articleManagement;
 
+import com.frico.website.common.Enum.DeleteEnum;
 import com.frico.website.common.model.DataEntity;
 
 import java.util.Date;
@@ -43,6 +44,10 @@ public class Classify extends DataEntity<Classify> {
 
     /** 字段:is_delete，是否删除 */
     private String isDelete;
+
+    public Classify(){
+        this.isDelete= DeleteEnum.NOT_DELETE.getCode();
+    }
 
     public Integer getId() {
         return id;
