@@ -40,6 +40,7 @@ public class FileController {
             log.error("上传文件数为空------");
             throw new MyException("上传文件数为空");
         }
+
         String fileName = null;
         List list = new LinkedList();
         for (MultipartFile m : files) {
@@ -61,10 +62,12 @@ public class FileController {
             String urls = url + "." + fileExt;
             InputStream inStream = new ByteArrayInputStream(m.getBytes());
             Long length = (long) m.getBytes().length;
+
             File file = new File(path);
-            if(file.exists()){
+            if(!file.exists()){
                 file.mkdirs();
             }
+
             path += urls;
             File uploadFile = new File(path);
             FileCopyUtils.copy(m.getBytes(), uploadFile);
