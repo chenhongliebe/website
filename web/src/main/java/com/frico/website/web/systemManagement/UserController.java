@@ -79,7 +79,11 @@ public class UserController {
         return Result.ret("11", "主键不能为空");
     }
 
-
+    /**
+     * 回收站恢复
+     * @param ids
+     * @return
+     */
     @RequestMapping("restore")
     public Result restore(@RequestBody Integer[] ids) {
         if(ids != null && ids.length > 1) {
