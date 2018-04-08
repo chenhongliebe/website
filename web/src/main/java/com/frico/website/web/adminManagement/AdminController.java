@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -34,18 +35,18 @@ public class AdminController {
     private static Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
-    private UroleMapperExt uroleMapperExt;
+    private UroleMapperExt uroleMapperExt;  //这里调的是dao层   将来要换成service层
 
     //跳转到登录表单页面
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String login() {
-        return "login"; //返回login.jsp页面
+    public Result login() {
+        return Result.success();
     }
 
-    @RequestMapping("/")
-    public String index(Model model) {
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    public Result index(Model model) {
         System.out.println("this is frame");
-        return "common/frame";
+        return Result.ret("0", "登录成功");
     }
 
 
@@ -62,7 +63,7 @@ public class AdminController {
      * @return
      */
     @RequestMapping(value = "ajaxLogin", method = RequestMethod.POST)
-    public String index(Uuser uuser){
+    public Result index(Uuser uuser){
         if(uuser.getMoblie() != null && uuser.getPassword() != null) {
             UsernamePasswordToken token = new UsernamePasswordToken(uuser.getMoblie(), uuser.getPassword(), "login");
             Subject currentUser = SecurityUtils.getSubject();
@@ -71,15 +72,22 @@ public class AdminController {
                 currentUser.login(token);
                 //验证是否登录成功
                 if(currentUser.isAuthenticated()) {
-
                     logger.info("对用户[" + uuser.getMoblie() + "]登录认证通过" ); //这里后面根据需求可以加认证通过后的一些系统参数的初始化操作
                     System.out.println("对用户[" + uuser.getMoblie() + "]登录认证通过");
-                    return "redirect:/";
+//                    return Result.success(logger);
+                    //这里添加后台超级管理员判断   超级管理员的登录账号和密码都是"admin"
+                    if("admin".equals(uuser.getMoblie()) && "admin".equals(uuser.getPassword())){
+                        //如果登录正确.跳转到管理员界面
+                        return Result.success(uuser);
+                    } else{
+                        return Result.ret("1", "登录失败");
+                    }
                 } else {
                     token.clear();
                     System.out.println("对用户[" + uuser.getMoblie() + "]登录认证失败,请重新登录");
-                    return "redirect:/login";
+                    return Result.ret("1", "登录失败");
                 }
+
             } catch ( UnknownAccountException uae ) {
 
                 logger.info("对用户[" + uuser.getMoblie() + "]进行登录认证..." + "\n" + "验证失败-username wasn't in the system");
@@ -94,7 +102,8 @@ public class AdminController {
                 logger.error( ae.getMessage() );
             }
         }
-        return "login";
+        return null;
+
     }
 
 
@@ -105,7 +114,7 @@ public class AdminController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/ajaxlogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/AjaxLogin", method = RequestMethod.POST)
     public Map<String, Object> submitLogin(@RequestBody String username, String password, Model model) {
 
         Map<String, Object> resultMap = new LinkedHashMap <>();
@@ -124,6 +133,18 @@ public class AdminController {
         return resultMap;
     }
 
+
+    /**
+     * 退出登录
+     * @param redirectAttributes
+     * @return
+     */
+    @RequestMapping(value = "ajaxLogout" , method = RequestMethod.POST)
+    public Result logout(RedirectAttributes redirectAttributes){
+        //使用权限管理工具进行用户的退出,跳出登录,给出提示信息
+        SecurityUtils.getSubject().logout();
+        return Result.success();
+    }
 
 }
 
