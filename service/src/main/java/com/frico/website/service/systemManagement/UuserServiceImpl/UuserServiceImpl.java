@@ -29,9 +29,13 @@ public class UuserServiceImpl implements UuserService{
      */
     @Override
     public void insert(Uuser uuser) {
+
+
         uuser.setCreateTime(new Date()); //添加创建时间
 
         uuserMapperExt.insertSelective(uuser);
+
+
     }
 
     /**
@@ -56,6 +60,7 @@ public class UuserServiceImpl implements UuserService{
     @Override
     public void update(Uuser uuser) {
         uuser.setLastLoginTime(new Date()); //添加最后登录时间
+
         uuserMapperExt.updateByPrimaryKeySelective(uuser);
     }
 
