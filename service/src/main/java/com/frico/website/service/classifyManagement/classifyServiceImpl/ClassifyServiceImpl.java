@@ -1,12 +1,15 @@
 package com.frico.website.service.classifyManagement.classifyServiceImpl;
 
+import com.frico.website.common.UserUtil;
 import com.frico.website.common.exception.MyException;
+import com.frico.website.common.model.LoginInfo;
 import com.frico.website.dao.articleManagement.ClassifyMapperExt;
 import com.frico.website.model.articleManagement.Classify;
 import com.frico.website.service.classifyManagement.ClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +33,11 @@ public class ClassifyServiceImpl implements ClassifyService{
      */
     @Override
     public void insert(Classify classify) {
+        LoginInfo loginInfo = UserUtil.getLoginInfo();
+        classify.setCreateDate(new Date());
+        classify.setUpdateDate(classify.getCreateDate());
+        classify.setCreateId(loginInfo.getId());
+        classify.setUpdateId(classify.getCreateId());
         classifyMapperExt.insertSelective(classify);
     }
 

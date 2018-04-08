@@ -3,6 +3,7 @@ package com.frico.website.web.fileUpload;
 import com.frico.website.common.Result;
 import com.frico.website.common.exception.MyException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,8 @@ import java.util.List;
 @RequestMapping("bc/fileUpload")
 public class FileController {
 
+    @Value("${filepath-base}")
+    private String path;
     /**
      * 上传资料文件
      * @param request
@@ -58,8 +61,12 @@ public class FileController {
             String urls = url + "." + fileExt;
             InputStream inStream = new ByteArrayInputStream(m.getBytes());
             Long length = (long) m.getBytes().length;
-            urls ="files/"+urls;
-            File uploadFile = new File(urls);
+            File file = new File(path);
+            if(file.exists()){
+                file.mkdirs();
+            }
+            path += urls;
+            File uploadFile = new File(path);
             FileCopyUtils.copy(m.getBytes(), uploadFile);
             list.add(urls);
             list.add(fileName);
