@@ -32,7 +32,6 @@ public class ClassifyController {
      */
     @RequestMapping("insert")
     public Result insert(@RequestBody Classify classify) {
-
         classifyService.insert(classify);
         return Result.success();
     }
