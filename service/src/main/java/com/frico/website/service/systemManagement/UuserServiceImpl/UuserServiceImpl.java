@@ -1,7 +1,9 @@
 package com.frico.website.service.systemManagement.UuserServiceImpl;
 
 
+import com.frico.website.common.UserUtil;
 import com.frico.website.common.exception.MyException;
+import com.frico.website.common.model.LoginInfo;
 import com.frico.website.dao.system.UuserMapperExt;
 import com.frico.website.model.system.Uuser;
 import com.frico.website.service.systemManagement.UuserService;
@@ -30,10 +32,18 @@ public class UuserServiceImpl implements UuserService{
     @Override
     public void insert(Uuser uuser) {
 
+        LoginInfo loginInfo = UserUtil.getLoginInfo();
+        if (loginInfo != null && loginInfo.getId() != null) {
+            uuser.setCreateTime(new Date()); //添加创建时间
+            uuser.setLastLoginTime(new Date());
 
-        uuser.setCreateTime(new Date()); //添加创建时间
+            uuserMapperExt.insertSelective(uuser);
+        }else {
+            throw new MyException("请先登录!");
+        }
 
-        uuserMapperExt.insertSelective(uuser);
+
+
 
 
     }
@@ -59,9 +69,11 @@ public class UuserServiceImpl implements UuserService{
      */
     @Override
     public void update(Uuser uuser) {
-        uuser.setLastLoginTime(new Date()); //添加最后登录时间
 
+        uuser.setLastLoginTime(new Date()); //添加最后登录时间
         uuserMapperExt.updateByPrimaryKeySelective(uuser);
+
+
     }
 
 
