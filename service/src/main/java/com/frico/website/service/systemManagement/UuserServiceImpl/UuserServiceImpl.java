@@ -1,6 +1,7 @@
 package com.frico.website.service.systemManagement.UuserServiceImpl;
 
 
+import com.frico.website.common.MD5;
 import com.frico.website.common.UserUtil;
 import com.frico.website.common.exception.MyException;
 import com.frico.website.common.model.LoginInfo;
@@ -36,6 +37,8 @@ public class UuserServiceImpl implements UuserService{
         if (loginInfo != null && loginInfo.getId() != null) {
             uuser.setCreateTime(new Date()); //添加创建时间
             uuser.setLastLoginTime(new Date());
+
+            uuser.setPassword(MD5.md5(uuser.getPassword()));
 
             uuserMapperExt.insertSelective(uuser);
         }else {
